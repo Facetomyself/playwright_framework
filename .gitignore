@@ -1,0 +1,16 @@
+# Python 虚拟环境
+.venv/
+venv/
+*/venv/
+
+# 自定义的 Chrome 文件夹
+chrome/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# IDE 和操作系统文件
+.idea/
+.vscode/
+.DS_Store
