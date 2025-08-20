@@ -1,18 +1,44 @@
 # scripts/cvh_scraper.py
 import asyncio
 import logging
-import re
 from typing import List, Dict, Any
-import csv
-import functools
 
 from playwright.async_api import Page
 
 from core.browser import PlaywrightBrowser, SessionConfig
+from utils.database import DatabaseManager
 
 
-async def parse_current_page(page: Page) -> List[Dict[str, Any]]:
-    """解析当前页面的所有标本数据"""
+async def parse_detail_page(page: Page) -> Dict[str, Any]:
+    """解析详情页的标本数据"""
+    detail_data = {}
+    
+    async def get_text(selector: str):
+        element = await page.query_selector(selector)
+        return await element.inner_text() if element else ""
+
+    # 获取主图 URL
+    img_element = await page.query_selector("#spm_image")
+    detail_data["detail_image_url"] = await img_element.get_attribute("src") if img_element else ""
+
+    detail_data["sci_name"] = await get_text("#formattedName")
+    detail_data["chinese_name"] = await get_text("#chineseName")
+    detail_data["identified_by"] = await get_text("#identifiedBy")
+    detail_data["date_identified"] = await get_text("#dateIdentified")
+    detail_data["recorded_by"] = await get_text("#recordedBy")
+    detail_data["record_number"] = await get_text("#recordNumber")
+    detail_data["verbatim_event_date"] = await get_text("#verbatimEventDate")
+    detail_data["locality"] = await get_text("#locality")
+    detail_data["elevation"] = await get_text("#elevation")
+    detail_data["habitat"] = await get_text("#habitat")
+    detail_data["occurrence_remarks"] = await get_text("#occurrenceRemarks")
+    detail_data["reproductive_condition"] = await get_text("#reproductiveCondition")
+    
+    return detail_data
+
+
+async def parse_list_page(page: Page) -> List[Dict[str, Any]]:
+    """解析列表页面的所有标本数据"""
     results = []
     rows = await page.query_selector_all("tbody#spms_list tr.spms-row")
     for row in rows:
@@ -24,8 +50,15 @@ async def parse_current_page(page: Page) -> List[Dict[str, Any]]:
         img_element = await cells[0].query_selector("img")
         img_src = await img_element.get_attribute("src") if img_element else ""
 
+        # 获取行元素的 data-collection-id 属性
+        detail_id = await row.get_attribute("data-collection-id")
+
+        if not detail_id:
+            continue
+
         # 按索引从每个单元格获取文本
         data = {
+            "detail_id": detail_id,
             "image_url": img_src,
             "barcode": await cells[1].inner_text(),
             "name": await cells[2].inner_text(),
@@ -38,97 +71,74 @@ async def parse_current_page(page: Page) -> List[Dict[str, Any]]:
 
 
 
-async def scrape_cvh_data(
+async def scrape_list_pages(
     browser_manager: PlaywrightBrowser,
     session_config: SessionConfig,
     session_name: str,
-    max_pages: int = 5,  # 限制最大采集页数，以防采太多
+    db_manager: DatabaseManager,
+    detail_task_queue: asyncio.Queue,
+    max_pages: int,
+    offset: int,
 ):
-    """
-    采集中国数字植物标本馆的标本数据。
-
-    :param browser_manager: 已初始化的 PlaywrightBrowser 实例。
-    :param session_config: 通用的会话配置。
-    :param session_name: 本次任务要使用的会话名称。
-    :param max_pages: 本次运行最多采集的页数。
-    """
-    logging.info(f"Starting CVH data scraping task for session: {session_name}")
+    """采集列表页，将基础数据存入数据库，并将 detail_id 放入详情页任务队列。"""
+    logging.info(f"LIST_SCRAPER ({session_name}): Starting chunk, offset={offset}, pages={max_pages}")
     
-    output_filename = f"cvh_specimen_data_{session_name}.csv"
-    fieldnames = ["image_url", "barcode", "name", "collector", "location", "year"]
-    
-    loop = asyncio.get_running_loop()
-
-    # 使用 run_in_executor 将同步的文件写入操作异步化
-    def sync_write_header():
-        with open(output_filename, "w", newline="", encoding="utf-8-sig") as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
-    
-    await loop.run_in_executor(None, sync_write_header)
-
-    total_records = 0
     session_manager = browser_manager.create_session(session_name, session_config)
-
     async with session_manager as session:
         page = await session.new_page()
         try:
-            url = "https://www.cvh.ac.cn/spms/list.php"
-            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
-            await page.wait_for_selector("tbody#spms_list", state="attached", timeout=60000)
+            base_url = "https://www.cvh.ac.cn/spms/list.php"
+            records_per_page = 30
 
-            for page_num in range(1, max_pages + 1):
-                logging.info(f"Scraping page {page_num}...")
+            for page_num in range(max_pages):
+                current_offset = offset + (page_num * records_per_page)
+                url = f"{base_url}?&offset={current_offset}"
                 
+                await page.goto(url, wait_until="domcontentloaded", timeout=60000)
                 await page.wait_for_selector("tbody#spms_list tr.spms-row", state="attached", timeout=30000)
-                
-                records = await parse_current_page(page)
-                if not records:
-                    logging.warning(f"No data found on page {page_num}. Exiting.")
-                    break
-                
-                # 将追加写入的操作也异步化
-                def sync_append_rows():
-                    with open(output_filename, "a", newline="", encoding="utf-8-sig") as f:
-                        writer = csv.DictWriter(f, fieldnames=fieldnames)
-                        writer.writerows(records)
-                
-                await loop.run_in_executor(None, sync_append_rows)
-                
-                total_records += len(records)
-                logging.info(f"Saved {len(records)} records from page {page_num}. Total saved: {total_records}")
 
-                jump_input = await page.query_selector("#jump_to")
-                if not jump_input:
-                    logging.error("Could not find page jump input. Exiting.")
-                    break
-                
-                placeholder = await jump_input.get_attribute("placeholder")
-                if not placeholder:
-                    logging.error("Could not get placeholder from jump input. Exiting.")
+                list_records = await parse_list_page(page)
+                if not list_records:
+                    logging.warning(f"LIST_SCRAPER ({session_name}): No data found at offset {current_offset}.")
                     break
 
-                match = re.search(r'第(\d+)/(\d+)页', placeholder)
-                if not match:
-                    logging.error(f"Could not parse page numbers from placeholder: '{placeholder}'. Exiting.")
-                    break
+                for record in list_records:
+                    await db_manager.save_list_data(record)
+                    await detail_task_queue.put(record["detail_id"])
                 
-                current_page, total_pages = map(int, match.groups())
-                
-                if current_page >= total_pages or page_num >= max_pages:
-                    logging.info("Reached the last page or max_pages limit. Finishing.")
-                    break
-
-                next_button = await page.query_selector("#next_page")
-                if next_button and await next_button.is_enabled():
-                    await next_button.click()
-                    await page.wait_for_selector("tbody#spms_list tr.spms-row", state="attached", timeout=30000)
-                else:
-                    logging.warning("Next page button not found or disabled. Exiting.")
-                    break
+                logging.info(f"LIST_SCRAPER ({session_name}): Saved and queued {len(list_records)} records from offset {current_offset}.")
 
         except Exception as e:
-            logging.error(f"An error occurred during scraping: {e}", exc_info=True)
+            logging.error(f"LIST_SCRAPER ({session_name}): Error at offset {offset}: {e}", exc_info=True)
         finally:
             await page.close()
-            logging.info(f"Scraping task finished. Total records saved to '{output_filename}': {total_records}")
+
+
+async def scrape_detail_page(
+    browser_manager: PlaywrightBrowser,
+    session_config: SessionConfig,
+    session_name: str,
+    db_manager: DatabaseManager,
+    detail_id: str,
+):
+    """接收一个 detail_id，采集其详情页数据并存入数据库。"""
+    logging.debug(f"DETAIL_SCRAPER ({session_name}): Processing id: {detail_id}")
+    
+    session_manager = browser_manager.create_session(session_name, session_config, clear_state=True) # 使用无状态会话
+    async with session_manager as session:
+        page = await session.new_page()
+        try:
+            detail_url = f"https://www.cvh.ac.cn/spms/detail.php?id={detail_id}"
+            await page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
+            
+            detail_info = await parse_detail_page(page)
+            detail_info["detail_id"] = detail_id
+            
+            await db_manager.save_detail_data(detail_info)
+            logging.info(f"DETAIL_SCRAPER ({session_name}): Successfully saved detail for id: {detail_id}")
+
+        except Exception as e:
+            logging.error(f"DETAIL_SCRAPER ({session_name}): Failed to process id {detail_id}: {e}")
+            # 在实际生产中，这里可以加入重试逻辑，例如将失败的 id 重新放入队列
+        finally:
+            await page.close()

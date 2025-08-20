@@ -16,6 +16,16 @@ SAVE_FINGERPRINT = False
 FINGERPRINT_DB_PATH = BASE_DIR / "data" / "fingerprints.jsonl"
 
 
+# --- 数据库配置 ---
+DATABASE_CONFIG = {
+    "host": "106.15.239.221",
+    "port": 3306,
+    "user": "root",
+    "password": "z4JDcvkIkSIRbHge",
+    "db": "cvh_data",
+}
+
+
 # --- Playwright 框架配置 ---
 class PlaywrightConfig:
     """Playwright 浏览器和会话的详细配置 (使用内置浏览器)"""
