@@ -13,14 +13,35 @@ async def parse_detail_page(page: Page) -> Dict[str, Any]:
     """解析详情页的标本数据"""
     detail_data = {}
     
+    # 等待页面关键元素加载完成
+    try:
+        # 等待主要内容区域加载
+        await page.wait_for_selector("#formattedName", state="attached", timeout=30000)
+        # 额外等待一小段时间确保所有动态内容都加载完成
+        await page.wait_for_timeout(2000)
+    except Exception as e:
+        logging.warning(f"等待页面元素超时: {e}")
+    
     async def get_text(selector: str):
-        element = await page.query_selector(selector)
-        return await element.inner_text() if element else ""
+        try:
+            element = await page.query_selector(selector)
+            if element:
+                text = await element.inner_text()
+                return text.strip() if text else ""
+            return ""
+        except Exception as e:
+            logging.debug(f"获取元素 {selector} 文本失败: {e}")
+            return ""
 
     # 获取主图 URL
-    img_element = await page.query_selector("#spm_image")
-    detail_data["detail_image_url"] = await img_element.get_attribute("src") if img_element else ""
+    try:
+        img_element = await page.query_selector("#spm_image")
+        detail_data["detail_image_url"] = await img_element.get_attribute("src") if img_element else ""
+    except Exception as e:
+        logging.debug(f"获取图片URL失败: {e}")
+        detail_data["detail_image_url"] = ""
 
+    # 获取所有文本字段
     detail_data["sci_name"] = await get_text("#formattedName")
     detail_data["chinese_name"] = await get_text("#chineseName")
     detail_data["identified_by"] = await get_text("#identifiedBy")
@@ -129,7 +150,8 @@ async def scrape_detail_page(
         page = await session.new_page()
         try:
             detail_url = f"https://www.cvh.ac.cn/spms/detail.php?id={detail_id}"
-            await page.goto(detail_url, wait_until="domcontentloaded", timeout=60000)
+            # 使用 networkidle 等待网络请求完成，确保页面完全加载
+            await page.goto(detail_url, wait_until="networkidle", timeout=60000)
             
             detail_info = await parse_detail_page(page)
             detail_info["detail_id"] = detail_id

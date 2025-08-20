@@ -28,8 +28,8 @@ from utils.database import DatabaseManager
 TOTAL_RECORDS = 8549727
 RECORDS_PER_PAGE = 30
 # 列表页和详情页的并发消费者数量可以独立配置
-LIST_CONSUMERS = 4
-DETAIL_CONSUMERS = 8
+LIST_CONSUMERS = 2
+DETAIL_CONSUMERS = 4
 PAGES_PER_LIST_TASK = 10  # 每个列表页任务包含的页面数
 
 
