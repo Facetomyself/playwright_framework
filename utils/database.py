@@ -141,6 +141,96 @@ class DatabaseManager:
                     data.get("reproductive_condition"),
                 ))
 
+    async def save_data_transactional(self, list_data: dict, detail_data: dict = None):
+        """事务性保存数据：列表数据和详情数据要么都保存，要么都不保存"""
+        if not self.pool:
+            raise ConnectionError("Database pool is not initialized.")
+
+        async with self.pool.acquire() as conn:
+            try:
+                # 开始事务
+                await conn.begin()
+
+                # 1. 保存列表数据
+                list_sql = """
+                    INSERT IGNORE INTO specimen_list
+                    (detail_id, image_url, barcode, name, collector, location, year)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """
+                async with conn.cursor() as cursor:
+                    await cursor.execute(list_sql, (
+                        list_data.get("detail_id"),
+                        list_data.get("image_url"),
+                        list_data.get("barcode"),
+                        list_data.get("name"),
+                        list_data.get("collector"),
+                        list_data.get("location"),
+                        list_data.get("year"),
+                    ))
+
+                # 2. 如果有详情数据，一并保存
+                if detail_data:
+                    detail_sql = """
+                        INSERT IGNORE INTO specimen_details
+                        (detail_id, detail_image_url, sci_name, chinese_name, identified_by,
+                        date_identified, recorded_by, record_number, verbatim_event_date,
+                        locality, elevation, habitat, occurrence_remarks, reproductive_condition)
+                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    """
+                    async with conn.cursor() as cursor:
+                        await cursor.execute(detail_sql, (
+                            detail_data.get("detail_id"),
+                            detail_data.get("detail_image_url"),
+                            detail_data.get("sci_name"),
+                            detail_data.get("chinese_name"),
+                            detail_data.get("identified_by"),
+                            detail_data.get("date_identified"),
+                            detail_data.get("recorded_by"),
+                            detail_data.get("record_number"),
+                            detail_data.get("verbatim_event_date"),
+                            detail_data.get("locality"),
+                            detail_data.get("elevation"),
+                            detail_data.get("habitat"),
+                            detail_data.get("occurrence_remarks"),
+                            detail_data.get("reproductive_condition"),
+                        ))
+
+                # 提交事务
+                await conn.commit()
+                return True
+
+            except Exception as e:
+                # 回滚事务
+                await conn.rollback()
+                logging.error(f"Transaction failed, rolled back: {e}")
+                raise e
+
+    async def save_list_data_batch(self, data_list: list):
+        """批量保存列表数据，提高性能"""
+        if not self.pool or not data_list:
+            return
+
+        sql = """
+            INSERT IGNORE INTO specimen_list
+            (detail_id, image_url, barcode, name, collector, location, year)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """
+
+        async with self.pool.acquire() as conn:
+            async with conn.cursor() as cursor:
+                # 批量插入
+                values = [(
+                    data.get("detail_id"),
+                    data.get("image_url"),
+                    data.get("barcode"),
+                    data.get("name"),
+                    data.get("collector"),
+                    data.get("location"),
+                    data.get("year"),
+                ) for data in data_list]
+
+                await cursor.executemany(sql, values)
+
     async def close(self):
         """关闭数据库连接池"""
         if self.pool:

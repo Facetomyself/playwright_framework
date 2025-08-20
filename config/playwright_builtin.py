@@ -1,5 +1,10 @@
 # config/playwright_builtin.py
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 # --- 基础路径配置 ---
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,17 +17,16 @@ BROWSER_EXECUTABLE_PATH = None
 USER_DATA_ROOT = BASE_DIR / "data" / "session_data"
 
 # --- 指纹持久化配置 ---
-SAVE_FINGERPRINT = False
+SAVE_FINGERPRINT = os.getenv("SAVE_FINGERPRINT", "false").lower() == "true"
 FINGERPRINT_DB_PATH = BASE_DIR / "data" / "fingerprints.jsonl"
-
 
 # --- 数据库配置 ---
 DATABASE_CONFIG = {
-    "host": "106.15.239.221",
-    "port": 3306,
-    "user": "root",
-    "password": "z4JDcvkIkSIRbHge",
-    "db": "cvh_data",
+    "host": os.getenv("DB_HOST", "106.15.239.221"),
+    "port": int(os.getenv("DB_PORT", "3306")),
+    "user": os.getenv("DB_USER", "root"),
+    "password": os.getenv("DB_PASSWORD", "z4JDcvkIkSIRbHge"),
+    "db": os.getenv("DB_NAME", "cvh_data"),
 }
 
 
@@ -32,10 +36,10 @@ class PlaywrightConfig:
 
     # 全局浏览器配置
     BROWSER_CONFIG = {
-        "headless": True,
+        "headless": os.getenv("BROWSER_HEADLESS", "true").lower() == "true",
         # 使用 Playwright 自动下载和管理的 Chromium 浏览器。
         # 移除 channel 配置，让 Playwright 使用其默认的、通过 `playwright install` 安装的浏览器。
-        "slow_mo": 0,
+        "slow_mo": int(os.getenv("BROWSER_SLOW_MO", "0")),
         "args": [
             "--disable-infobars",
             "--disable-blink-features=AutomationControlled",

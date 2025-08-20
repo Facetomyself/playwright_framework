@@ -1,35 +1,31 @@
 # config/default.py
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 # --- 基础路径配置 ---
-# 项目根目录
-# Path(__file__) -> d:/Chrome/config/default.py
-# .parent -> d:/Chrome/config
-# .parent -> d:/Chrome
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- 浏览器相关配置 ---
-# 自定义浏览器主程序路径
-# 恢复使用自定义浏览器路径
 BROWSER_EXECUTABLE_PATH = BASE_DIR / "chrome" / "Chrome-bin" / "chrome.exe"
 
 # 浏览器数据存储根目录
 USER_DATA_ROOT = BASE_DIR / "data" / "session_data"
 
 # --- 指纹持久化配置 ---
-# 是否开启指纹采集与保存功能
-SAVE_FINGERPRINT = False
-# 指纹数据库文件路径 (使用 .jsonl 格式，方便追加)
+SAVE_FINGERPRINT = os.getenv("SAVE_FINGERPRINT", "false").lower() == "true"
 FINGERPRINT_DB_PATH = BASE_DIR / "data" / "fingerprints.jsonl"
-
 
 # --- 数据库配置 ---
 DATABASE_CONFIG = {
-    "host": "106.15.239.221",
-    "port": 3306,
-    "user": "root",
-    "password": "z4JDcvkIkSIRbHge",
-    "db": "cvh_data",  # 我们将在这个数据库中创建表
+    "host": os.getenv("DB_HOST", "106.15.239.221"),
+    "port": int(os.getenv("DB_PORT", "3306")),
+    "user": os.getenv("DB_USER", "root"),
+    "password": os.getenv("DB_PASSWORD", "z4JDcvkIkSIRbHge"),
+    "db": os.getenv("DB_NAME", "cvh_data"),
 }
 
 
@@ -39,10 +35,10 @@ class PlaywrightConfig:
 
     # 全局浏览器配置
     BROWSER_CONFIG = {
-        "headless": True,
+        "headless": os.getenv("BROWSER_HEADLESS", "true").lower() == "true",
         # 当使用 executable_path 时，不应指定 channel
         # "channel": "chrome",
-        "slow_mo": 0,  # 慢速模式，单位毫秒，方便观察
+        "slow_mo": int(os.getenv("BROWSER_SLOW_MO", "0")),
         "args": [
             "--disable-infobars",
             "--disable-blink-features=AutomationControlled",

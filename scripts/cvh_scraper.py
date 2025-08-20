@@ -1,12 +1,38 @@
 # scripts/cvh_scraper.py
 import asyncio
 import logging
+import time
+import random
 from typing import List, Dict, Any
+from functools import wraps
 
 from playwright.async_api import Page
 
 from core.browser import PlaywrightBrowser, SessionConfig
 from utils.database import DatabaseManager
+
+
+def retry_on_failure(max_retries=3, delay=2, backoff=2):
+    """重试装饰器：网络请求失败时自动重试"""
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            last_exception = None
+            for attempt in range(max_retries + 1):
+                try:
+                    return await func(*args, **kwargs)
+                except Exception as e:
+                    last_exception = e
+                    if attempt < max_retries:
+                        wait_time = delay * (backoff ** attempt) + random.uniform(0, 1)
+                        logging.warning(f"{func.__name__} failed (attempt {attempt + 1}/{max_retries + 1}): {e}")
+                        logging.info(f"Retrying in {wait_time:.2f} seconds...")
+                        await asyncio.sleep(wait_time)
+                    else:
+                        logging.error(f"{func.__name__} failed after {max_retries + 1} attempts: {e}")
+            raise last_exception
+        return wrapper
+    return decorator
 
 
 async def parse_detail_page(page: Page) -> Dict[str, Any]:
@@ -92,6 +118,7 @@ async def parse_list_page(page: Page) -> List[Dict[str, Any]]:
 
 
 
+@retry_on_failure(max_retries=2, delay=3, backoff=1.5)
 async def scrape_list_pages(
     browser_manager: PlaywrightBrowser,
     session_config: SessionConfig,
@@ -123,8 +150,12 @@ async def scrape_list_pages(
                     logging.warning(f"LIST_SCRAPER ({session_name}): No data found at offset {current_offset}.")
                     break
 
+                # 批量保存列表数据，提高性能
+                if list_records:
+                    await db_manager.save_list_data_batch(list_records)
+
+                # 将 detail_id 放入详情页任务队列
                 for record in list_records:
-                    await db_manager.save_list_data(record)
                     await detail_task_queue.put(record["detail_id"])
                 
                 logging.info(f"LIST_SCRAPER ({session_name}): Saved and queued {len(list_records)} records from offset {current_offset}.")
@@ -135,6 +166,7 @@ async def scrape_list_pages(
             await page.close()
 
 
+@retry_on_failure(max_retries=3, delay=5, backoff=2)
 async def scrape_detail_page(
     browser_manager: PlaywrightBrowser,
     session_config: SessionConfig,

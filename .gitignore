@@ -14,3 +14,6 @@ __pycache__/
 .idea/
 .vscode/
 .DS_Store
+
+# 敏感数据
+.env
