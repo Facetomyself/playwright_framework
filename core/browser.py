@@ -2,6 +2,7 @@
 import asyncio
 import json
 import logging
+import portalocker
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -37,6 +38,8 @@ class SessionConfig:
     user_agent: Optional[str] = None
     viewport: Dict[str, int] = field(default_factory=lambda: {"width": 1920, "height": 1080})
     init_script_path: Optional[Path] = None
+    browser_args: List[str] = field(default_factory=list)
+    fingerprint_profile_path: Optional[Path] = None
 
     def get_storage_state_path(self, session_name: str) -> Path:
         """根据会话名生成持久化文件路径"""
@@ -44,18 +47,23 @@ class SessionConfig:
 
 
 async def _save_fingerprint_non_blocking(fingerprint_record: Dict[str, Any]):
-    """在后台线程中异步追加指纹记录，避免阻塞主事件循环"""
+    """在后台线程中异步追加指纹记录，使用文件锁避免并发写入问题"""
     loop = asyncio.get_running_loop()
+
+    def locked_write():
+        try:
+            with portalocker.Lock(FINGERPRINT_DB_PATH, "a", encoding="utf-8", timeout=5) as f:
+                f.write(json.dumps(fingerprint_record, ensure_ascii=False) + "\n")
+            logging.info(f"Fingerprint for session '{fingerprint_record.get('session_name')}' saved in background.")
+        except portalocker.LockException as e:
+            logging.error(f"Could not acquire lock for fingerprint db: {e}")
+        except Exception as e:
+            logging.error(f"Background fingerprint save failed: {e}")
+
     try:
-        await loop.run_in_executor(
-            None,  # 使用默认的线程池执行器
-            lambda: FINGERPRINT_DB_PATH.open("a", encoding="utf-8").write(
-                json.dumps(fingerprint_record, ensure_ascii=False) + "\n"
-            )
-        )
-        logging.info(f"Fingerprint for session '{fingerprint_record.get('session_name')}' saved in background.")
+        await loop.run_in_executor(None, locked_write)
     except Exception as e:
-        logging.error(f"Background fingerprint save failed: {e}")
+        logging.error(f"Failed to execute non-blocking save: {e}")
 
 
 class BrowserSession:
@@ -68,13 +76,11 @@ class BrowserSession:
         browser: Browser,
         session_name: str,
         config: SessionConfig,
-        browser_args: List[str],
         clear_state: bool = False,
     ):
         self.browser = browser
         self.session_name = session_name
         self.config = config
-        self.browser_args = browser_args
         self.context: Optional[BrowserContext] = None
         self.storage_path = self.config.get_storage_state_path(self.session_name)
         self.logger = logging.getLogger(f"Session[{self.session_name}]")
@@ -85,37 +91,70 @@ class BrowserSession:
             self.logger.info("Cleared persistent state file: %s", self.storage_path)
 
     async def __aenter__(self) -> "BrowserSession":
-        """进入上下文，创建并初始化 BrowserContext，并采集指纹"""
+        """进入上下文，创建并初始化 BrowserContext，并采集或应用指纹"""
         self.logger.info("Initializing browser context...")
-        
+
         launch_kwargs: Dict[str, Any] = {
             "viewport": self.config.viewport,
             "user_agent": self.config.user_agent,
             "proxy": self.config.proxy,
         }
+
+        # --- 指纹应用 ---
+        fingerprint_to_apply = None
+        if self.config.fingerprint_profile_path and self.config.fingerprint_profile_path.exists():
+            try:
+                with self.config.fingerprint_profile_path.open("r", encoding="utf-8") as f:
+                    fingerprint_to_apply = json.load(f)
+                
+                # 优先使用指纹文件中的 UA
+                if "user_agent" in fingerprint_to_apply.get("fingerprint", {}):
+                    launch_kwargs["user_agent"] = fingerprint_to_apply["fingerprint"]["user_agent"]
+                    self.logger.info("-> Applying User-Agent from fingerprint profile.")
+
+            except Exception as e:
+                self.logger.error(f"Failed to load fingerprint profile: {e}")
+                fingerprint_to_apply = None
+
         if self.storage_path.exists():
             launch_kwargs["storage_state"] = self.storage_path
             self.logger.info("-> Loading state from: %s", self.storage_path)
-        
-        if self.config.init_script_path and self.config.init_script_path.exists():
-             self.logger.info("-> Preparing init script from: %s", self.config.init_script_path)
 
         self.context = await self.browser.new_context(**launch_kwargs)
 
+        # --- 注入初始化脚本 ---
+        # 1. 注入 stealth.min.js (如果配置了)
         if self.config.init_script_path and self.config.init_script_path.exists():
             await self.context.add_init_script(path=self.config.init_script_path)
+            self.logger.info("-> Injected stealth script from: %s", self.config.init_script_path)
 
-        # --- 指纹采集 ---
-        # 为了确保指纹采集过程不污染业务逻辑页面，我们在这里创建一个临时的、
-        # 一次性的页面来执行采集脚本，采集完毕后立即关闭。
-        if SAVE_FINGERPRINT:
+        # 2. 如果有指纹配置，生成并注入伪造脚本
+        if fingerprint_to_apply:
+            try:
+                fp_data = fingerprint_to_apply["fingerprint"]
+                # 移除 UA，因为它已经通过 launch_kwargs 设置了
+                fp_data.pop("user_agent", None)
+                
+                # 生成伪造脚本
+                override_script = "(() => {\n"
+                for key, value in fp_data.items():
+                    # 简单的 JS 类型转换
+                    js_value = json.dumps(value)
+                    override_script += f"  Object.defineProperty(navigator, '{key}', {{ get: () => {js_value} }});\n"
+                override_script += "})();"
+                
+                await self.context.add_init_script(script=override_script)
+                self.logger.info("-> Injected fingerprint override script.")
+            except Exception as e:
+                self.logger.error(f"Failed to generate or inject fingerprint script: {e}")
+
+        # --- 指纹采集 (仅在未应用指纹时进行) ---
+        if not fingerprint_to_apply and SAVE_FINGERPRINT:
             fp_page = await self.context.new_page()
             try:
-                # 读取并执行指纹采集脚本
                 fp_script_path = Path(__file__).parent / "init_scripts" / "get_fingerprint.js"
                 if fp_script_path.exists():
                     fp_script = fp_script_path.read_text(encoding="utf-8")
-                    # 在 about:blank 页面执行脚本以获取环境指纹
                     await fp_page.goto("about:blank")
                     fingerprint_json = await fp_page.evaluate(f"({fp_script})()")
                     self.fingerprint_data = json.loads(fingerprint_json)
@@ -144,9 +183,10 @@ class BrowserSession:
                 fingerprint_record = {
                     "timestamp_utc": datetime.utcnow().isoformat(),
                     "session_name": self.session_name,
+                    "storage_state_path": str(self.storage_path),
                     "config": {
                         "user_agent": self.config.user_agent,
-                        "browser_args": self.browser_args,
+                        "browser_args": self.config.browser_args,
                     },
                     "fingerprint": self.fingerprint_data,
                 }
@@ -215,6 +255,5 @@ class PlaywrightBrowser:
             self.browser,
             session_name,
             config,
-            browser_args=self.config.args,
             clear_state=clear_state,
         )

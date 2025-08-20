@@ -1,38 +1,31 @@
-# config/default.py
+# config/playwright_builtin.py
 from pathlib import Path
 
 # --- 基础路径配置 ---
-# 项目根目录
-# Path(__file__) -> d:/Chrome/config/default.py
-# .parent -> d:/Chrome/config
-# .parent -> d:/Chrome
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # --- 浏览器相关配置 ---
-# 自定义浏览器主程序路径
-# 恢复使用自定义浏览器路径
-BROWSER_EXECUTABLE_PATH = BASE_DIR / "chrome" / "Chrome-bin" / "chrome.exe"
+# 使用 Playwright 内置浏览器，因此 BROWSER_EXECUTABLE_PATH 设置为 None
+BROWSER_EXECUTABLE_PATH = None
 
 # 浏览器数据存储根目录
 USER_DATA_ROOT = BASE_DIR / "data" / "session_data"
 
 # --- 指纹持久化配置 ---
-# 是否开启指纹采集与保存功能
 SAVE_FINGERPRINT = False
-# 指纹数据库文件路径 (使用 .jsonl 格式，方便追加)
 FINGERPRINT_DB_PATH = BASE_DIR / "data" / "fingerprints.jsonl"
 
 
 # --- Playwright 框架配置 ---
 class PlaywrightConfig:
-    """Playwright 浏览器和会话的详细配置"""
+    """Playwright 浏览器和会话的详细配置 (使用内置浏览器)"""
 
     # 全局浏览器配置
     BROWSER_CONFIG = {
         "headless": True,
-        # 当使用 executable_path 时，不应指定 channel
-        # "channel": "chrome",
-        "slow_mo": 0,  # 慢速模式，单位毫秒，方便观察
+        # 使用 Playwright 自动下载和管理的 Chromium 浏览器。
+        # 移除 channel 配置，让 Playwright 使用其默认的、通过 `playwright install` 安装的浏览器。
+        "slow_mo": 0,
         "args": [
             "--disable-infobars",
             "--disable-blink-features=AutomationControlled",
@@ -41,7 +34,6 @@ class PlaywrightConfig:
 
     # 通用浏览器会话配置
     SESSION_CONFIG = {
-        # user_data_root 将在主逻辑中从上面的常量动态传入
         "init_script_path": BASE_DIR / "core" / "init_scripts" / "stealth.min.js",
         "user_agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -52,9 +44,9 @@ class PlaywrightConfig:
             "--timezone=Asia/Shanghai",
             "--lang=zh-CN",
             "--accept-lang=zh-CN",
-            "--fpseed=12lfsfffaughu98",  # 示例指纹种子
+            "--fpseed=12lfsfffaughu98",
         ],
     }
 
-# 确保数据目录存在 (包括父目录)
+# 确保数据目录存在
 USER_DATA_ROOT.mkdir(parents=True, exist_ok=True)
