@@ -1,0 +1,427 @@
+2025-08-20 15:37:12 [INFO] CVH_SCRAPER: Logging system initialized
+2025-08-20 15:37:18 [INFO] root: Database 'cvh_data' ensured to exist.
+2025-08-20 15:37:18 [INFO] root: Database connection pool created.
+2025-08-20 15:37:18 [INFO] root: Table 'specimen_list' ensured to exist.
+2025-08-20 15:37:18 [INFO] root: Table 'specimen_details' ensured to exist.
+2025-08-20 15:37:18 [INFO] PlaywrightBrowser: Starting Playwright...
+2025-08-20 15:37:21 [INFO] PlaywrightBrowser: Browser launched.
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Started.
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 100 tasks, queue size: 100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 200 tasks, queue size: 200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 300 tasks, queue size: 300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 400 tasks, queue size: 400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 500 tasks, queue size: 500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 600 tasks, queue size: 600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 700 tasks, queue size: 700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 800 tasks, queue size: 800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 900 tasks, queue size: 900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1000 tasks, queue size: 1000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1100 tasks, queue size: 1100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1200 tasks, queue size: 1200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1300 tasks, queue size: 1300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1400 tasks, queue size: 1400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1500 tasks, queue size: 1500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1600 tasks, queue size: 1600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1700 tasks, queue size: 1700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1800 tasks, queue size: 1800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 1900 tasks, queue size: 1900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2000 tasks, queue size: 2000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2100 tasks, queue size: 2100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2200 tasks, queue size: 2200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2300 tasks, queue size: 2300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2400 tasks, queue size: 2400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2500 tasks, queue size: 2500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2600 tasks, queue size: 2600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2700 tasks, queue size: 2700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2800 tasks, queue size: 2800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 2900 tasks, queue size: 2900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3000 tasks, queue size: 3000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3100 tasks, queue size: 3100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3200 tasks, queue size: 3200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3300 tasks, queue size: 3300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3400 tasks, queue size: 3400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3500 tasks, queue size: 3500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3600 tasks, queue size: 3600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3700 tasks, queue size: 3700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3800 tasks, queue size: 3800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 3900 tasks, queue size: 3900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4000 tasks, queue size: 4000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4100 tasks, queue size: 4100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4200 tasks, queue size: 4200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4300 tasks, queue size: 4300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4400 tasks, queue size: 4400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4500 tasks, queue size: 4500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4600 tasks, queue size: 4600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4700 tasks, queue size: 4700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4800 tasks, queue size: 4800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 4900 tasks, queue size: 4900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5000 tasks, queue size: 5000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5100 tasks, queue size: 5100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5200 tasks, queue size: 5200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5300 tasks, queue size: 5300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5400 tasks, queue size: 5400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5500 tasks, queue size: 5500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5600 tasks, queue size: 5600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5700 tasks, queue size: 5700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5800 tasks, queue size: 5800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 5900 tasks, queue size: 5900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6000 tasks, queue size: 6000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6100 tasks, queue size: 6100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6200 tasks, queue size: 6200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6300 tasks, queue size: 6300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6400 tasks, queue size: 6400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6500 tasks, queue size: 6500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6600 tasks, queue size: 6600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6700 tasks, queue size: 6700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6800 tasks, queue size: 6800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 6900 tasks, queue size: 6900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7000 tasks, queue size: 7000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7100 tasks, queue size: 7100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7200 tasks, queue size: 7200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7300 tasks, queue size: 7300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7400 tasks, queue size: 7400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7500 tasks, queue size: 7500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7600 tasks, queue size: 7600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7700 tasks, queue size: 7700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7800 tasks, queue size: 7800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 7900 tasks, queue size: 7900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8000 tasks, queue size: 8000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8100 tasks, queue size: 8100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8200 tasks, queue size: 8200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8300 tasks, queue size: 8300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8400 tasks, queue size: 8400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8500 tasks, queue size: 8500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8600 tasks, queue size: 8600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8700 tasks, queue size: 8700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8800 tasks, queue size: 8800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 8900 tasks, queue size: 8900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9000 tasks, queue size: 9000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9100 tasks, queue size: 9100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9200 tasks, queue size: 9200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9300 tasks, queue size: 9300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9400 tasks, queue size: 9400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9500 tasks, queue size: 9500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9600 tasks, queue size: 9600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9700 tasks, queue size: 9700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9800 tasks, queue size: 9800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 9900 tasks, queue size: 9900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10000 tasks, queue size: 10000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10100 tasks, queue size: 10100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10200 tasks, queue size: 10200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10300 tasks, queue size: 10300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10400 tasks, queue size: 10400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10500 tasks, queue size: 10500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10600 tasks, queue size: 10600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10700 tasks, queue size: 10700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10800 tasks, queue size: 10800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 10900 tasks, queue size: 10900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11000 tasks, queue size: 11000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11100 tasks, queue size: 11100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11200 tasks, queue size: 11200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11300 tasks, queue size: 11300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11400 tasks, queue size: 11400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11500 tasks, queue size: 11500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11600 tasks, queue size: 11600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11700 tasks, queue size: 11700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11800 tasks, queue size: 11800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 11900 tasks, queue size: 11900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12000 tasks, queue size: 12000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12100 tasks, queue size: 12100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12200 tasks, queue size: 12200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12300 tasks, queue size: 12300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12400 tasks, queue size: 12400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12500 tasks, queue size: 12500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12600 tasks, queue size: 12600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12700 tasks, queue size: 12700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12800 tasks, queue size: 12800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 12900 tasks, queue size: 12900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13000 tasks, queue size: 13000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13100 tasks, queue size: 13100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13200 tasks, queue size: 13200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13300 tasks, queue size: 13300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13400 tasks, queue size: 13400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13500 tasks, queue size: 13500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13600 tasks, queue size: 13600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13700 tasks, queue size: 13700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13800 tasks, queue size: 13800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 13900 tasks, queue size: 13900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14000 tasks, queue size: 14000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14100 tasks, queue size: 14100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14200 tasks, queue size: 14200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14300 tasks, queue size: 14300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14400 tasks, queue size: 14400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14500 tasks, queue size: 14500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14600 tasks, queue size: 14600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14700 tasks, queue size: 14700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14800 tasks, queue size: 14800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 14900 tasks, queue size: 14900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15000 tasks, queue size: 15000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15100 tasks, queue size: 15100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15200 tasks, queue size: 15200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15300 tasks, queue size: 15300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15400 tasks, queue size: 15400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15500 tasks, queue size: 15500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15600 tasks, queue size: 15600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15700 tasks, queue size: 15700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15800 tasks, queue size: 15800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 15900 tasks, queue size: 15900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16000 tasks, queue size: 16000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16100 tasks, queue size: 16100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16200 tasks, queue size: 16200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16300 tasks, queue size: 16300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16400 tasks, queue size: 16400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16500 tasks, queue size: 16500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16600 tasks, queue size: 16600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16700 tasks, queue size: 16700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16800 tasks, queue size: 16800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 16900 tasks, queue size: 16900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17000 tasks, queue size: 17000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17100 tasks, queue size: 17100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17200 tasks, queue size: 17200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17300 tasks, queue size: 17300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17400 tasks, queue size: 17400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17500 tasks, queue size: 17500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17600 tasks, queue size: 17600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17700 tasks, queue size: 17700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17800 tasks, queue size: 17800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 17900 tasks, queue size: 17900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18000 tasks, queue size: 18000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18100 tasks, queue size: 18100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18200 tasks, queue size: 18200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18300 tasks, queue size: 18300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18400 tasks, queue size: 18400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18500 tasks, queue size: 18500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18600 tasks, queue size: 18600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18700 tasks, queue size: 18700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18800 tasks, queue size: 18800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 18900 tasks, queue size: 18900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19000 tasks, queue size: 19000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19100 tasks, queue size: 19100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19200 tasks, queue size: 19200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19300 tasks, queue size: 19300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19400 tasks, queue size: 19400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19500 tasks, queue size: 19500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19600 tasks, queue size: 19600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19700 tasks, queue size: 19700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19800 tasks, queue size: 19800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 19900 tasks, queue size: 19900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20000 tasks, queue size: 20000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20100 tasks, queue size: 20100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20200 tasks, queue size: 20200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20300 tasks, queue size: 20300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20400 tasks, queue size: 20400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20500 tasks, queue size: 20500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20600 tasks, queue size: 20600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20700 tasks, queue size: 20700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20800 tasks, queue size: 20800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 20900 tasks, queue size: 20900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21000 tasks, queue size: 21000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21100 tasks, queue size: 21100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21200 tasks, queue size: 21200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21300 tasks, queue size: 21300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21400 tasks, queue size: 21400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21500 tasks, queue size: 21500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21600 tasks, queue size: 21600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21700 tasks, queue size: 21700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21800 tasks, queue size: 21800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 21900 tasks, queue size: 21900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22000 tasks, queue size: 22000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22100 tasks, queue size: 22100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22200 tasks, queue size: 22200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22300 tasks, queue size: 22300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22400 tasks, queue size: 22400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22500 tasks, queue size: 22500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22600 tasks, queue size: 22600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22700 tasks, queue size: 22700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22800 tasks, queue size: 22800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 22900 tasks, queue size: 22900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23000 tasks, queue size: 23000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23100 tasks, queue size: 23100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23200 tasks, queue size: 23200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23300 tasks, queue size: 23300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23400 tasks, queue size: 23400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23500 tasks, queue size: 23500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23600 tasks, queue size: 23600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23700 tasks, queue size: 23700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23800 tasks, queue size: 23800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 23900 tasks, queue size: 23900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24000 tasks, queue size: 24000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24100 tasks, queue size: 24100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24200 tasks, queue size: 24200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24300 tasks, queue size: 24300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24400 tasks, queue size: 24400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24500 tasks, queue size: 24500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24600 tasks, queue size: 24600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24700 tasks, queue size: 24700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24800 tasks, queue size: 24800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 24900 tasks, queue size: 24900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25000 tasks, queue size: 25000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25100 tasks, queue size: 25100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25200 tasks, queue size: 25200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25300 tasks, queue size: 25300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25400 tasks, queue size: 25400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25500 tasks, queue size: 25500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25600 tasks, queue size: 25600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25700 tasks, queue size: 25700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25800 tasks, queue size: 25800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 25900 tasks, queue size: 25900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26000 tasks, queue size: 26000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26100 tasks, queue size: 26100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26200 tasks, queue size: 26200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26300 tasks, queue size: 26300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26400 tasks, queue size: 26400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26500 tasks, queue size: 26500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26600 tasks, queue size: 26600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26700 tasks, queue size: 26700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26800 tasks, queue size: 26800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 26900 tasks, queue size: 26900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27000 tasks, queue size: 27000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27100 tasks, queue size: 27100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27200 tasks, queue size: 27200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27300 tasks, queue size: 27300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27400 tasks, queue size: 27400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27500 tasks, queue size: 27500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27600 tasks, queue size: 27600
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27700 tasks, queue size: 27700
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27800 tasks, queue size: 27800
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 27900 tasks, queue size: 27900
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 28000 tasks, queue size: 28000
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 28100 tasks, queue size: 28100
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 28200 tasks, queue size: 28200
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 28300 tasks, queue size: 28300
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 28400 tasks, queue size: 28400
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Generated 28500 tasks, queue size: 28500
+2025-08-20 15:37:21 [INFO] root: LIST_PRODUCER: Finished. Generated 28500 tasks.
+2025-08-20 15:37:21 [INFO] root: LIST_CONSUMER_1: Started.
+2025-08-20 15:37:21 [INFO] root: LIST_SCRAPER (list_worker_1): Starting chunk, offset=0, pages=10
+2025-08-20 15:37:21 [INFO] Session[list_worker_1]: Initializing browser context...
+2025-08-20 15:37:21 [INFO] Session[list_worker_1]: -> Loading state from: D:\python_project\Playwright_flamework\data\session_data\list_worker_1_state.json
+2025-08-20 15:37:21 [INFO] root: LIST_CONSUMER_2: Started.
+2025-08-20 15:37:21 [INFO] root: LIST_SCRAPER (list_worker_2): Starting chunk, offset=300, pages=10
+2025-08-20 15:37:21 [INFO] Session[list_worker_2]: Initializing browser context...
+2025-08-20 15:37:21 [INFO] Session[list_worker_2]: -> Loading state from: D:\python_project\Playwright_flamework\data\session_data\list_worker_2_state.json
+2025-08-20 15:37:21 [INFO] root: DETAIL_CONSUMER_1: Started.
+2025-08-20 15:37:21 [INFO] root: DETAIL_CONSUMER_2: Started.
+2025-08-20 15:37:21 [INFO] root: DETAIL_CONSUMER_3: Started.
+2025-08-20 15:37:21 [INFO] root: DETAIL_CONSUMER_4: Started.
+2025-08-20 15:37:24 [INFO] Session[list_worker_1]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:37:24 [INFO] Session[list_worker_2]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:37:31 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 0.
+2025-08-20 15:37:31 [INFO] Session[detail_worker_1]: Initializing browser context...
+2025-08-20 15:37:31 [INFO] Session[detail_worker_2]: Initializing browser context...
+2025-08-20 15:37:31 [INFO] Session[detail_worker_3]: Initializing browser context...
+2025-08-20 15:37:31 [INFO] Session[detail_worker_4]: Initializing browser context...
+2025-08-20 15:37:31 [INFO] Session[detail_worker_1]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:37:31 [INFO] Session[detail_worker_2]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:37:31 [INFO] Session[detail_worker_3]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:37:31 [INFO] Session[detail_worker_4]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:37:32 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 300.
+2025-08-20 15:37:34 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 30.
+2025-08-20 15:37:36 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 330.
+2025-08-20 15:37:37 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 60.
+2025-08-20 15:37:39 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 360.
+2025-08-20 15:37:40 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 90.
+2025-08-20 15:37:43 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 390.
+2025-08-20 15:37:43 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 120.
+2025-08-20 15:37:46 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 420.
+2025-08-20 15:37:47 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 150.
+2025-08-20 15:37:49 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 450.
+2025-08-20 15:37:50 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 180.
+2025-08-20 15:37:53 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 480.
+2025-08-20 15:37:53 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 210.
+2025-08-20 15:37:58 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 510.
+2025-08-20 15:38:00 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 240.
+2025-08-20 15:38:01 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 540.
+2025-08-20 15:38:02 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 270.
+2025-08-20 15:38:04 [INFO] Session[list_worker_1]: Storage state saved to: D:\python_project\Playwright_flamework\data\session_data\list_worker_1_state.json
+2025-08-20 15:38:04 [INFO] Session[list_worker_1]: Browser context closed.
+2025-08-20 15:38:04 [INFO] root: LIST_SCRAPER (list_worker_1): Starting chunk, offset=600, pages=10
+2025-08-20 15:38:04 [INFO] Session[list_worker_1]: Initializing browser context...
+2025-08-20 15:38:04 [INFO] Session[list_worker_1]: -> Loading state from: D:\python_project\Playwright_flamework\data\session_data\list_worker_1_state.json
+2025-08-20 15:38:04 [INFO] Session[list_worker_1]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:38:05 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 570.
+2025-08-20 15:38:07 [INFO] Session[list_worker_2]: Storage state saved to: D:\python_project\Playwright_flamework\data\session_data\list_worker_2_state.json
+2025-08-20 15:38:07 [INFO] Session[list_worker_2]: Browser context closed.
+2025-08-20 15:38:07 [INFO] root: LIST_SCRAPER (list_worker_2): Starting chunk, offset=900, pages=10
+2025-08-20 15:38:07 [INFO] Session[list_worker_2]: Initializing browser context...
+2025-08-20 15:38:07 [INFO] Session[list_worker_2]: -> Loading state from: D:\python_project\Playwright_flamework\data\session_data\list_worker_2_state.json
+2025-08-20 15:38:07 [INFO] Session[list_worker_2]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:38:13 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 600.
+2025-08-20 15:38:14 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 900.
+2025-08-20 15:38:16 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 630.
+2025-08-20 15:38:17 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 930.
+2025-08-20 15:38:19 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 960.
+2025-08-20 15:38:19 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 660.
+2025-08-20 15:38:22 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 990.
+2025-08-20 15:38:22 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 690.
+2025-08-20 15:38:24 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 1020.
+2025-08-20 15:38:26 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 720.
+2025-08-20 15:38:27 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 1050.
+2025-08-20 15:38:29 [INFO] root: LIST_SCRAPER (list_worker_1): Saved and queued 30 records from offset 750.
+2025-08-20 15:38:30 [INFO] root: LIST_SCRAPER (list_worker_2): Saved and queued 30 records from offset 1080.
+2025-08-20 15:38:32 [ERROR] root: DETAIL_SCRAPER (detail_worker_1): Failed to process id e6e73365: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e73365", waiting until "networkidle"
+
+2025-08-20 15:38:33 [ERROR] root: DETAIL_SCRAPER (detail_worker_2): Failed to process id e6e73489: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e73489", waiting until "networkidle"
+
+2025-08-20 15:38:34 [INFO] Session[detail_worker_1]: Storage state saved to: D:\python_project\Playwright_flamework\data\session_data\detail_worker_1_state.json
+2025-08-20 15:38:34 [INFO] Session[detail_worker_1]: Browser context closed.
+2025-08-20 15:38:34 [INFO] Session[detail_worker_1]: Cleared persistent state file: D:\python_project\Playwright_flamework\data\session_data\detail_worker_1_state.json
+2025-08-20 15:38:34 [INFO] Session[detail_worker_1]: Initializing browser context...
+2025-08-20 15:38:34 [INFO] Session[detail_worker_1]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:38:35 [INFO] Session[detail_worker_2]: Storage state saved to: D:\python_project\Playwright_flamework\data\session_data\detail_worker_2_state.json
+2025-08-20 15:38:35 [INFO] Session[detail_worker_2]: Browser context closed.
+2025-08-20 15:38:35 [INFO] Session[detail_worker_2]: Cleared persistent state file: D:\python_project\Playwright_flamework\data\session_data\detail_worker_2_state.json
+2025-08-20 15:38:35 [INFO] Session[detail_worker_2]: Initializing browser context...
+2025-08-20 15:38:35 [INFO] Session[detail_worker_2]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:38:35 [ERROR] root: DETAIL_SCRAPER (detail_worker_3): Failed to process id e6e73514: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e73514", waiting until "networkidle"
+
+2025-08-20 15:38:36 [ERROR] root: DETAIL_SCRAPER (detail_worker_4): Failed to process id e6e7359d: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e7359d", waiting until "networkidle"
+
+2025-08-20 15:38:39 [INFO] Session[detail_worker_3]: Storage state saved to: D:\python_project\Playwright_flamework\data\session_data\detail_worker_3_state.json
+2025-08-20 15:38:39 [INFO] Session[detail_worker_3]: Browser context closed.
+2025-08-20 15:38:39 [INFO] Session[detail_worker_3]: Cleared persistent state file: D:\python_project\Playwright_flamework\data\session_data\detail_worker_3_state.json
+2025-08-20 15:38:39 [INFO] Session[detail_worker_3]: Initializing browser context...
+2025-08-20 15:38:39 [INFO] Session[detail_worker_3]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:38:40 [INFO] Session[detail_worker_4]: Storage state saved to: D:\python_project\Playwright_flamework\data\session_data\detail_worker_4_state.json
+2025-08-20 15:38:40 [INFO] Session[detail_worker_4]: Browser context closed.
+2025-08-20 15:38:40 [INFO] Session[detail_worker_4]: Cleared persistent state file: D:\python_project\Playwright_flamework\data\session_data\detail_worker_4_state.json
+2025-08-20 15:38:40 [INFO] Session[detail_worker_4]: Initializing browser context...
+2025-08-20 15:38:40 [INFO] Session[detail_worker_4]: -> Injected stealth script from: D:\python_project\Playwright_flamework\core\init_scripts\stealth.min.js
+2025-08-20 15:39:13 [INFO] root: Received signal 2, initiating graceful shutdown...
+2025-08-20 15:39:13 [ERROR] root: DETAIL_SCRAPER (detail_worker_3): Failed to process id e6e73738: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e73738", waiting until "networkidle"
+
+2025-08-20 15:39:13 [ERROR] root: DETAIL_SCRAPER (detail_worker_1): Failed to process id e6e73625: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e73625", waiting until "networkidle"
+
+2025-08-20 15:39:13 [ERROR] root: DETAIL_SCRAPER (detail_worker_2): Failed to process id e6e736ae: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e736ae", waiting until "networkidle"
+
+2025-08-20 15:39:13 [ERROR] root: DETAIL_SCRAPER (detail_worker_4): Failed to process id e6e737c0: Page.goto: Target page, context or browser has been closed
+Call log:
+  - navigating to "https://www.cvh.ac.cn/spms/detail.php?id=e6e737c0", waiting until "networkidle"
+
+2025-08-20 15:39:13 [ERROR] Session[detail_worker_3]: Failed to save storage state: BrowserContext.storage_state: Target page, context or browser has been closed
+2025-08-20 15:39:13 [INFO] Session[detail_worker_3]: Browser context closed.
+2025-08-20 15:39:13 [INFO] root: DETAIL_CONSUMER_3: Shutting down. Processed 2 tasks.
+2025-08-20 15:39:13 [ERROR] Session[detail_worker_1]: Failed to save storage state: BrowserContext.storage_state: Target page, context or browser has been closed
+2025-08-20 15:39:13 [INFO] Session[detail_worker_1]: Browser context closed.
+2025-08-20 15:39:13 [INFO] root: DETAIL_CONSUMER_1: Shutting down. Processed 2 tasks.
+2025-08-20 15:39:13 [ERROR] Session[detail_worker_2]: Failed to save storage state: BrowserContext.storage_state: Target page, context or browser has been closed
+2025-08-20 15:39:13 [INFO] Session[detail_worker_2]: Browser context closed.
+2025-08-20 15:39:13 [INFO] root: DETAIL_CONSUMER_2: Shutting down. Processed 2 tasks.
+2025-08-20 15:39:13 [ERROR] Session[detail_worker_4]: Failed to save storage state: BrowserContext.storage_state: Target page, context or browser has been closed
+2025-08-20 15:39:13 [INFO] Session[detail_worker_4]: Browser context closed.
+2025-08-20 15:39:13 [INFO] root: DETAIL_CONSUMER_4: Shutting down. Processed 2 tasks.
+2025-08-20 15:39:45 [INFO] root: Received signal 2, initiating graceful shutdown...

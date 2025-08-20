@@ -19,15 +19,6 @@ USER_DATA_ROOT = BASE_DIR / "data" / "session_data"
 SAVE_FINGERPRINT = os.getenv("SAVE_FINGERPRINT", "false").lower() == "true"
 FINGERPRINT_DB_PATH = BASE_DIR / "data" / "fingerprints.jsonl"
 
-# --- 数据库配置 ---
-DATABASE_CONFIG = {
-    "host": os.getenv("DB_HOST", "106.15.239.221"),
-    "port": int(os.getenv("DB_PORT", "3306")),
-    "user": os.getenv("DB_USER", "root"),
-    "password": os.getenv("DB_PASSWORD", "z4JDcvkIkSIRbHge"),
-    "db": os.getenv("DB_NAME", "cvh_data"),
-}
-
 
 # --- Playwright 框架配置 ---
 class PlaywrightConfig:

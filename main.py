@@ -13,7 +13,6 @@ from config.playwright_builtin import (
     PlaywrightConfig,
     BROWSER_EXECUTABLE_PATH,
     USER_DATA_ROOT,
-    DATABASE_CONFIG,
 )
 from config.logging_config import setup_logging
 
@@ -29,14 +28,23 @@ from utils.startup import (
 )
 from utils.database import DatabaseManager
 
-# --- 全局任务参数（从环境变量读取）---
-TOTAL_RECORDS = int(os.getenv("TOTAL_RECORDS", "8549727"))
-RECORDS_PER_PAGE = int(os.getenv("RECORDS_PER_PAGE", "30"))
-# 列表页和详情页的并发消费者数量可以独立配置
-LIST_CONSUMERS = int(os.getenv("LIST_CONSUMERS", "2"))
-DETAIL_CONSUMERS = int(os.getenv("DETAIL_CONSUMERS", "4"))
-PAGES_PER_LIST_TASK = int(os.getenv("PAGES_PER_LIST_TASK", "10"))  # 每个列表页任务包含的页面数
-DETAIL_QUEUE_SIZE = int(os.getenv("DETAIL_QUEUE_SIZE", "1000"))  # 详情页队列大小
+# --- 示例项目配置 ---
+# 注意：这些是示例项目的具体配置，实际项目中应该根据需要调整
+TOTAL_RECORDS = 8549727
+RECORDS_PER_PAGE = 30
+LIST_CONSUMERS = 2
+DETAIL_CONSUMERS = 4
+PAGES_PER_LIST_TASK = 10
+DETAIL_QUEUE_SIZE = 1000
+
+# 示例项目数据库配置
+EXAMPLE_DATABASE_CONFIG = {
+    "host": "host",
+    "port": 3306,
+    "user": "root",
+    "password": "password",
+    "db": "db_name",
+}
 
 # 性能监控
 class PerformanceMonitor:
@@ -144,11 +152,6 @@ async def managed_resources():
     """资源管理上下文管理器"""
     resources = {}
     try:
-        # 初始化数据库管理器
-        db_manager = DatabaseManager(DATABASE_CONFIG)
-        await db_manager.initialize()
-        resources['db_manager'] = db_manager
-
         # 初始化浏览器管理器配置
         browser_config, session_config = load_configs(
             PlaywrightConfig, USER_DATA_ROOT, BROWSER_EXECUTABLE_PATH
@@ -345,7 +348,10 @@ async def main():
 
     # 使用资源管理器
     async with managed_resources() as resources:
-        db_manager = resources['db_manager']
+        # 使用示例项目的数据库配置
+        db_manager = DatabaseManager(EXAMPLE_DATABASE_CONFIG)
+        await db_manager.initialize()
+
         browser_config = resources['browser_config']
         session_config = resources['session_config']
         list_queue = resources['list_queue']

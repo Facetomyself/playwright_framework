@@ -26,9 +26,9 @@
 ├── .env                        # 环境变量配置文件（敏感信息）
 ├── .gitignore                  # Git忽略文件配置
 ├── config/
-│   ├── default.py             # [配置] 使用自定义浏览器的配置
-│   ├── playwright_builtin.py  # [配置] 使用 Playwright 内置浏览器的配置
-│   └── logging_config.py      # [配置] 日志格式和级别的配置
+│   ├── default.py             # [框架配置] 使用自定义浏览器的基础配置
+│   ├── playwright_builtin.py  # [框架配置] 使用 Playwright 内置浏览器的基础配置
+│   └── logging_config.py      # [框架配置] 日志格式和级别的配置
 ├── core/
 │   ├── browser.py             # 核心框架，包含 PlaywrightBrowser 和 BrowserSession
 │   └── init_scripts/          # 存放页面初始化时注入的 JS 脚本
@@ -42,8 +42,8 @@
 │   └── session_data/          # 存放每个会话的持久化文件 (_state.json)
 ├── logs/                      # 日志文件目录（自动创建）
 ├── scripts/
-│   └── cvh_scraper.py         # 具体的业务逻辑脚本，包含重试和错误处理
-├── main.py                    # 项目主入口，包含性能监控和动态并发控制
+│   └── cvh_scraper.py         # [示例项目] 具体的业务逻辑脚本，包含重试和错误处理
+├── main.py                    # [示例项目] 项目主入口，包含性能监控和动态并发控制
 └── README.md                  # 项目说明文档
 ```
 
@@ -71,21 +71,29 @@ cp .env .env.local  # 复制并修改为本地配置
 
 2. 编辑 `.env` 文件，设置您的配置：
 ```env
-# 数据库配置
-DB_HOST=your_database_host
-DB_PORT=3306
-DB_USER=your_username
-DB_PASSWORD=your_password
-DB_NAME=your_database_name
-
-# 并发控制配置
-LIST_CONSUMERS=2
-DETAIL_CONSUMERS=4
-
-# 其他配置
+# 框架基础配置
 BROWSER_HEADLESS=true
+BROWSER_SLOW_MO=0
 SAVE_FINGERPRINT=false
 LOG_LEVEL=INFO
+```
+
+3. 在您的项目代码中设置具体的业务配置：
+```python
+# 在main.py或scripts/中设置项目特定的配置
+DATABASE_CONFIG = {
+    "host": "your_database_host",
+    "port": 3306,
+    "user": "your_username",
+    "password": "your_password",
+    "db": "your_database_name",
+}
+
+# 业务相关配置
+LIST_CONSUMERS = 2
+DETAIL_CONSUMERS = 4
+TOTAL_RECORDS = 8549727
+RECORDS_PER_PAGE = 30
 ```
 
 #### 代码配置
@@ -118,11 +126,12 @@ LOG_LEVEL=INFO
 
 #### 配置说明
 
-- **数据库配置**: 通过环境变量或配置文件设置数据库连接信息
-- **并发控制**: `LIST_CONSUMERS` 和 `DETAIL_CONSUMERS` 控制列表页和详情页的并发数
-- **浏览器配置**: `BROWSER_HEADLESS` 控制是否启用无头模式
+- **框架配置**: 通过 `.env` 文件设置框架基础配置
+- **业务配置**: 在项目代码中设置具体的业务相关配置
+- **数据库配置**: 在具体项目中通过代码配置数据库连接信息
+- **并发控制**: 在项目代码中设置 `LIST_CONSUMERS` 和 `DETAIL_CONSUMERS`
+- **浏览器配置**: 通过环境变量控制 `BROWSER_HEADLESS` 等基础配置
 - **日志配置**: `LOG_LEVEL` 设置日志级别，支持 DEBUG、INFO、WARNING、ERROR
-- **指纹配置**: `SAVE_FINGERPRINT` 控制是否保存浏览器指纹信息
 
 ### 3. 编写业务脚本
 
@@ -170,6 +179,35 @@ python main.py
 #### 自定义监控指标
 
 可以通过修改 `PerformanceMonitor` 类来添加自定义监控指标。
+
+## 框架架构说明
+
+### 配置分离原则
+
+本框架采用配置分离原则：
+
+1. **框架配置** (`config/` 目录和 `.env` 文件)
+   - 包含框架运行必需的基础配置
+   - 不包含具体业务数据
+   - 保持通用性和可重用性
+
+2. **业务配置** (`main.py`, `scripts/` 目录)
+   - 包含具体的业务逻辑和配置
+   - 数据库连接信息、并发数等业务相关配置
+   - 可以根据不同项目需求进行调整
+
+3. **环境配置** (`.env` 文件)
+   - 框架级别的环境配置
+   - 支持不同环境的快速切换
+   - 敏感信息的基础配置
+
+### 使用建议
+
+- **开发新项目**: 基于框架创建新的采集项目时，只需要配置业务相关参数
+- **框架升级**: 框架更新时不会影响项目的业务配置
+- **配置管理**: 敏感信息应该通过环境变量或项目配置文件管理，避免硬编码
+
+这种架构确保了框架的纯净性和可重用性，同时让具体项目能够灵活配置。
 
 #### 错误处理策略
 
