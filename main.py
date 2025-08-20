@@ -5,7 +5,6 @@ import logging
 import os
 import signal
 import time
-from typing import List, Dict, Any
 from contextlib import asynccontextmanager
 
 # --- 配置导入 ---
@@ -17,7 +16,7 @@ from config.playwright_builtin import (
 from config.logging_config import setup_logging
 
 # --- 核心组件和脚本导入 ---
-from core.browser import PlaywrightBrowser, BrowserConfig, SessionConfig
+from core.browser import PlaywrightBrowser
 from scripts.cvh_scraper import scrape_list_pages, scrape_detail_page
 
 # --- 辅助工具导入 ---

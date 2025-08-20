@@ -1,10 +1,6 @@
 # config/default.py
 from pathlib import Path
 import os
-from dotenv import load_dotenv
-
-# 加载环境变量
-load_dotenv()
 
 # --- 基础路径配置 ---
 BASE_DIR = Path(__file__).resolve().parent.parent

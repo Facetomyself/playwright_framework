@@ -4,10 +4,14 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import Tuple
+from dotenv import load_dotenv
 
 from playwright.async_api import async_playwright
 
 from core.browser import BrowserConfig, SessionConfig
+
+# 加载环境变量
+load_dotenv()
 
 
 def load_configs(
